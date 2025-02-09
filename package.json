@@ -1,0 +1,36 @@
+{
+  "type": "module",
+  "name": "decentralised-cab-booking-system",
+  "version": "1.0.0",
+  "description": "A decentralized cab booking system using blockchain",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/app.js",
+    "test": "npx hardhat test"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "hardhat": "^2.0.0"
+  },
+  "author": "Maniram Sirimalla",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maniram294/Decentralised-cab-booking-system.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Maniram294/Decentralised-cab-booking-system/issues"
+  },
+  "homepage": "https://github.com/Maniram294/Decentralised-cab-booking-system#readme"
+}
