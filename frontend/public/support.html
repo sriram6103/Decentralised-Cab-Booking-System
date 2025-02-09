@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support</title>
+  <link rel="stylesheet" href="../styles/support.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-brand">Chivas Rider</div>
+    <ul class="navbar-links">
+      <li><a href="./rider.html">Dashboard</a></li>
+      <li><a href="./ride-history.html">Ride History</a></li>
+      <li><a href="./notifications.html">Notifications</a></li>
+      <li><a href="./settings.html">Account Settings</a></li>
+      <li><a href="./support.html" class="active">Support</a></li>
+      <li><a href="./index.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Support Section -->
+  <div class="support-container">
+    <h1>How can we assist you?</h1>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <ul id="faq-list">
+        <li class="faq-item">
+          <button class="faq-toggle">What is the refund policy?</button>
+          <div class="faq-answer">
+            <p>Our refund policy is available on the "Refunds" page under Terms and Conditions.</p>
+          </div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-toggle">How do I change my password?</button>
+          <div class="faq-answer">
+            <p>You can change your password from the "Account Settings" page.</p>
+          </div>
+        </li>
+        <!-- More FAQ items can be added here -->
+      </ul>
+    </div>
+
+    <!-- Contact Form Section -->
+    <div class="contact-form">
+      <h2>Contact Support</h2>
+      <form id="support-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+      <div id="form-status"></div>
+    </div>
+  </div>
+
+  <script src="support.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/user_page.css">
+    <!-- Web3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+    <script src="../src/user_page.js" defer></script> <!-- Link to external JavaScript -->
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div><a href="./user_page.html" class="navbar-brand"> Cabziii</a></div>
+        <nav>
+            <ul class="navbar-links">
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#book-ride">Book a Ride</a></li>
+                <li><a href="#ride-history">Ride History</a></li>
+            </ul>
+        </nav>
+        <button class="menu-button">Menu</button>
+    </header>
+
+    <!-- Floating Menu Window -->
+    <aside id="menuWindow" class="menu-window">
+        <ul class="menu-window-content">
+            <li><a href="./user_page_profile.html" class="profile-button">Profile</a></li>
+            <li><button onclick="alert('Notifications Section')">Notifications</button></li>
+            <li><button onclick="alert('Safety Section')">Safety</button></li>
+            <li><button onclick="alert('My Rewards Section')">My Rewards</button></li>
+            <li><button onclick="alert('Settings Section')">Settings</button></li>
+            <li><a href="./index.html" class="logout-button">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard-container">
+            <h1>Welcome, User!</h1>
+            <p>Manage your rides, view history, and access personalized features here.</p>
+            <div>
+                <button id="connect-wallet" class="wallet-button">Connect Wallet</button>
+                <p>Wallet Address: <span id="wallet-address">Not Connected</span></p>
+                <p>Wallet Balance: <span id="wallet-balance">0.0000 ETH</span></p>
+            </div>
+        </section>
+
+        <!-- Book a Ride Section -->
+        <section id="book-ride" class="ride-container">
+            <h1>Book a Ride</h1>
+            <form id="rideForm">
+                <div class="form-group">
+                    <label for="pickup">Pickup Location:</label>
+                    <input type="text" id="pickup" placeholder="Enter pickup location" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination:</label>
+                    <input type="text" id="destination" placeholder="Enter destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="distance">Distance (in km):</label>
+                    <input type="number" id="distance" placeholder="Enter distance between pickup and destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="vehicle-type">Select Vehicle Type:</label>
+                    <select id="vehicle-type">
+                        <option value="car">Car</option>
+                        <option value="bike">Bike</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </div>
+                <button type="submit" class="ride-button">Confirm Ride</button>
+            </form>
+            <div id="rideDetails" class="ride-details"></div>
+        </section>
+
+        <!-- Ride History Section -->
+        <section id="ride-history" class="ride-history-container">
+            <h1>Ride History</h1>
+            <div id="historyList" class="history-list"></div>
+        </section>
+    </main>
+</body>
+</html>

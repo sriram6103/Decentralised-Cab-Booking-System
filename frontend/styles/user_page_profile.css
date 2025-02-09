@@ -1,0 +1,59 @@
+/* General Styles */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #34495E;
+}
+
+/* Main Sections */
+.profile-container {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h1 {
+    margin-bottom: 20px;
+}
+
+.profile-details {
+    margin-bottom: 20px;
+}
+
+.profile-item {
+    display: flex;
+    justify-content: space-between; /* Align label and value */
+    margin-bottom: 15px; /* Space between items */
+}
+
+.profile-item label {
+    font-weight: bold; /* Bold labels for emphasis */
+}
+
+.edit-profile-button {
+    background-color: #8E44AD; /* Match the theme color */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-profile-button:hover {
+    background-color: #9B59B6; /* Lighter shade on hover */
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 15px; /* Adjust padding for smaller screens */
+        width: calc(100% - 30px); /* Full-width minus padding */
+        max-width: none; /* Remove max-width for better layout on mobile */
+    }
+}

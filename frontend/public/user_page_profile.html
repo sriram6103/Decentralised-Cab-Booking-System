@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/user_page.css">
+    <link rel="stylesheet" href="../styles/user_page_profile.css">
+    <script src="../src/user_page_profile.js"></script>
+
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div><a href="./user_page.html" class="navbar-brand"> Cabziii</a></div>
+        <nav>
+            <ul class="navbar-links">
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#book-ride">Book a Ride</a></li>
+                <li><a href="#ride-history">Ride History</a></li>
+                <li><a href="#profile" class="active">Profile</a></li> <!-- Active link for profile -->
+            </ul>
+        </nav>
+        <button class="menu-button">Menu</button>
+    </header>
+
+    <!-- Floating Menu Window -->
+    <aside id="menuWindow" class="menu-window">
+        <ul class="menu-window-content">
+            <li><button onclick="alert('Profile Section')">Profile</button></li>
+            <li><button onclick="alert('Notifications Section')">Notifications</button></li>
+            <li><button onclick="alert('Safety Section')">Safety</button></li>
+            <li><button onclick="alert('My Rewards Section')">My Rewards</button></li>
+            <li><button onclick="alert('Settings Section')">Settings</button></li>
+            <li><a href="./index.html" class="logout-button">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <!-- User Profile Section -->
+        <section id="profile" class="profile-container">
+            <h1>User Profile</h1>
+            <div class="profile-details">
+                <div class="profile-item">
+                    <label for="first-name">First Name:</label>
+                    <span id="first-name">John</span> <!-- Example Data -->
+                </div>
+                <div class="profile-item">
+                    <label for="last-name">Last Name:</label>
+                    <span id="last-name">Doe</span> <!-- Example Data -->
+                </div>
+                <div class="profile-item">
+                    <label for="email">Email:</label>
+                    <span id="email">john.doe@example.com</span> <!-- Example Data -->
+                </div>
+                <div class="profile-item">
+                    <label for="mobile-number">Mobile Number:</label>
+                    <span id="mobile-number">+1234567890</span> <!-- Example Data -->
+                </div>
+            </div>
+
+            <!-- Edit Profile Button -->
+            <button class="edit-profile-button">Edit Profile</button>
+        </section>
+    </main>
+
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        // Menu Toggle Logic
+        const menuButton = document.querySelector(".menu-button");
+        const menuWindow = document.getElementById("menuWindow");
+
+        menuButton.addEventListener("click", () => {
+            menuWindow.classList.toggle("active");
+        });
+    </script>
+</body>
+</html>

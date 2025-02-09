@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings</title>
+  <link rel="stylesheet" href="../styles/account-settings.css">
+  <script defer src="../src/account-settings.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-brand">Chivas Rider</div>
+    <ul class="navbar-links">
+      <li><a href="./rider.html">Dashboard</a></li>
+      <li><a href="./ride-history.html">Ride History</a></li>
+      <li><a href="./notifications.html">Notifications</a></li>
+      <li><a href="./settings.html" class="active">Account Settings</a></li>
+      <li><a href="./support.html">Support</a></li>
+      <li><a href="./index.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Account Settings Section -->
+  <div class="settings-container">
+    <h1>Account Settings</h1>
+    
+    <!-- Personal Info Section -->
+    <section class="settings-section">
+      <h2>Personal Information</h2>
+      <form id="personal-info-form">
+        <div class="form-group">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" name="name" value="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" value="johndoe@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="text" id="phone" name="phone" value="123-456-7890" required>
+        </div>
+        <button type="submit" class="btn">Save Changes</button>
+      </form>
+    </section>
+
+    <!-- Security Section -->
+    <section class="settings-section">
+      <h2>Security</h2>
+      <form id="security-form">
+        <div class="form-group">
+          <label for="current-password">Current Password:</label>
+          <input type="password" id="current-password" name="current-password" required>
+        </div>
+        <div class="form-group">
+          <label for="new-password">New Password:</label>
+          <input type="password" id="new-password" name="new-password" required>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm New Password:</label>
+          <input type="password" id="confirm-password" name="confirm-password" required>
+        </div>
+        <button type="submit" class="btn">Change Password</button>
+      </form>
+    </section>
+
+    <!-- Payment Methods Section -->
+    <section class="settings-section">
+      <h2>Payment Methods</h2>
+      <ul id="payment-methods-list">
+        <li>
+          <span>Visa ending in 1234</span>
+          <button class="remove-payment-btn">Remove</button>
+        </li>
+        <li>
+          <span>MasterCard ending in 5678</span>
+          <button class="remove-payment-btn">Remove</button>
+        </li>
+      </ul>
+      <button id="add-payment-btn" class="btn">Add Payment Method</button>
+    </section>
+
+    <!-- Preferences Section -->
+    <section class="settings-section">
+      <h2>Preferences</h2>
+      <form id="preferences-form">
+        <div class="form-group">
+          <label for="notification-preferences">Notification Preferences:</label>
+          <select id="notification-preferences" name="notification-preferences">
+            <option value="email">Email Notifications</option>
+            <option value="sms">SMS Notifications</option>
+            <option value="push">Push Notifications</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="language-preferences">Language Preferences:</label>
+          <select id="language-preferences" name="language-preferences">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">Save Preferences</button>
+      </form>
+    </section>
+  </div>
+
+  <!-- Back to Dashboard Button -->
+  <div class="back-to-dashboard">
+    <a href="./rider.html">Back to Dashboard</a>
+  </div>
+</body>
+</html>

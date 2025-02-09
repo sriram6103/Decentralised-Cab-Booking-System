@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chivas Login</title>
+        <link rel="stylesheet" href="../styles/login.css">
+        <!-- Include Ethers.js from CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+        <!-- Your custom script -->
+        <script src="../src/index.js"></script>
+    </head>
+    
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">Cabziii</div>
+        <ul class="navbar-links">
+            <li><a href="./index.html">Login</a></li>
+            <li><a href="./signup.html">Sign Up</a></li>
+            <li><a href="./contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Login Page Content -->
+    <div class="login-container">
+        <div class="login-box">
+            <h1 class="login-title">Login</h1>
+            <form>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" name="role">
+                        <option value="user">User</option>
+                        <option value="driver">Driver</option>
+                    </select>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+            <p class="signup-prompt">
+                Don't have an account? <a href="./signup.html" class="signup-link">Sign up</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

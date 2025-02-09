@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ride History</title>
+  <link rel="stylesheet" href="../styles/ride-history.css">
+  <script defer src="../src/ride-history.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-brand">Chivas Rider</div>
+    <ul class="navbar-links">
+      <li><a href="./rider.html">Dashboard</a></li>
+      <li><a href="./ride-history.html" class="active">Ride History</a></li>
+      <li><a href="./notifications.html">Notifications</a></li>
+      <li><a href="./settings.html">Account Settings</a></li>
+      <li><a href="./support.html">Support</a></li>
+      <li><a href="./index.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Ride History Section -->
+  <div class="ride-history-container">
+    <h1>Ride History</h1>
+    <div id="ride-history" class="history-list">
+      <!-- Ride history items will be populated by JavaScript -->
+    </div>
+  </div>
+
+  <!-- Back to Dashboard Button -->
+  <div class="back-to-dashboard">
+    <a href="./rider.html">Back to Dashboard</a>
+  </div>
+</body>
+</html>

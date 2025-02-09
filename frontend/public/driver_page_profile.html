@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Profile</title>
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/driver_page.css">
+    <link rel="stylesheet" href="../styles/driver_page_profile.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div><a href="./driver_page.html" class="navbar-brand">Cabziii</a></div>
+        <nav>
+            <ul class="navbar-links">
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#ride-requests">Ride Requests</a></li>
+                <li><a href="#earnings">Earnings</a></li>
+                <li><a href="#profile" class="active">Profile</a></li>
+            </ul>
+        </nav>
+        <button class="menu-button">Menu</button>
+    </header>
+
+    <!-- Floating Menu Window -->
+    <aside id="menuWindow" class="menu-window">
+        <ul class="menu-window-content">
+            <li><button onclick="alert('Profile Section')">Profile</button></li>
+            <li><button onclick="alert('Notifications Section')">Notifications</button></li>
+            <li><button onclick="alert('Safety Section')">Safety</button></li>
+            <li><button onclick="alert('My Rewards Section')">My Rewards</button></li>
+            <li><button onclick="alert('Settings Section')">Settings</button></li>
+            <li><a href="./index.html" class="logout-button">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Driver Profile Section -->
+        <section id="profile" class="profile-container">
+            <h1>Driver Profile</h1>
+            <div class="profile-details">
+                <div class="profile-item">
+                    <label for="first-name">First Name:</label>
+                    <span id="first-name">John</span>
+                </div>
+                <div class="profile-item">
+                    <label for="last-name">Last Name:</label>
+                    <span id="last-name">Doe</span>
+                </div>
+                <div class="profile-item">
+                    <label for="email">Email:</label>
+                    <span id="email">john.doe@example.com</span>
+                </div>
+                <div class="profile-item">
+                    <label for="mobile-number">Mobile Number:</label>
+                    <span id="mobile-number">+1234567890</span>
+                </div>
+                <div class="profile-item">
+                    <label for="license">License:</label>
+                    <span id="license">XYZ-12345</span>
+                </div>
+                <div class="profile-item">
+                    <label for="vehicle-reg">Vehicle Registration:</label>
+                    <span id="vehicle-reg">AB-123-CD</span>
+                </div>
+            </div>
+
+            <!-- Edit Profile Button -->
+            <button class="edit-profile-button">Edit Profile</button>
+        </section>
+    </main>
+
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        const menuButton = document.querySelector(".menu-button");
+        const menuWindow = document.getElementById("menuWindow");
+
+        menuButton.addEventListener("click", () => {
+            menuWindow.classList.toggle("active");
+        });
+    </script>
+    <script src="../scripts/driver_profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>driver Dashboard</title>
+  <link rel="stylesheet" href="../styles/rider.css">
+  <script defer src="../src/rider.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-brand">Chivas</div>
+    <ul class="navbar-links">
+      <li><a href="./driver_page.html" class="active">Dashboard</a></li>
+      <li><a href="./ride-history.html">Ride History</a></li>
+      <li><a href="./notifications.html">Notifications</a></li>
+      <li><a href="./settings.html">Account Settings</a></li>
+      <li><a href="./support.html">Support</a></li>
+      <li><a href="./index.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Dashboard Overview -->
+  <div class="dashboard-container">
+    <h1>Welcome, Driver!</h1>
+    <div class="dashboard-overview">
+      <div class="dashboard-card">
+        <h2>Today's Rides</h2>
+        <p>Completed: <span id="completed-rides">0</span></p>
+        <p>Upcoming: <span id="upcoming-rides">0</span></p>
+      </div>
+      <div class="dashboard-card">
+        <h2>Current Status</h2>
+        <p>Status: <span id="rider-status">Available</span></p>
+        <div class="status-toggle">
+          <label class="switch">
+            <input type="checkbox" id="status-toggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ride History -->
+  <div class="ride-history-container">
+    <h2>Ride History</h2>
+    <ul id="ride-history">
+      <li>No rides completed yet.</li>
+    </ul>
+  </div>
+
+  <!-- Notifications -->
+  <div id="notification-popup" class="popup hidden">
+    <h2>New Ride Request</h2>
+    <p>Pickup: <span id="popup-pickup">Location A</span></p>
+    <p>Mobile: <span id="popup-mobile">+1 234 567 890</span></p> <!-- Add mobile number here -->
+    <button id="accept-ride" class="popup-button">Accept</button>
+    <button id="reject-ride" class="popup-button">Reject</button>
+  </div>
+
+  <!-- Account Settings -->
+  <div class="account-settings-container">
+    <h2>Account Settings</h2>
+    <p><a href="./settings.html">Edit Profile</a></p>
+    <p><a href="./settings.html">Manage Payment Methods</a></p>
+    <p><a href="./preferences.html">Set Preferences</a></p>
+  </div>
+
+  <!-- Support Section -->
+  <div class="support-container">
+    <h2>Support</h2>
+    <p>Need help? <a href="./support.html">Contact Support</a> or <a href="./report.html">Report an Issue</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,237 @@
+/* General Styles */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #34495E;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #2C3E50;
+    color: #ecf0f1;
+}
+
+.navbar-brand {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar-links a:hover {
+    background-color: #3498db;
+}
+
+.profile-button {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile-button:hover {
+    background-color: #2980b9;
+}
+
+/* Profile Window */
+.profile-window {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.profile-window.show {
+    display: block;
+}
+
+.profile-window-content {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-window-content button,
+.profile-window-content a {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    background-color: #2980b9;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile-window-content button:hover,
+.profile-window-content a:hover {
+    background-color: #3498db;
+}
+
+/* Main Sections */
+section {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ride-container .ride-button,
+.dashboard-container .dashboard-button {
+    display: inline-block;
+    margin: 10px 0;
+    background-color: #8E44AD;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ride-container .ride-button:hover,
+.dashboard-container .dashboard-button:hover {
+    background-color: #9B59B6;
+}
+
+/* Ride History */
+.history-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 15px;
+}
+
+.history-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Floating Menu Window */
+.menu-window {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 60px; /* Adjust as necessary */
+    right: 30px; /* Adjust as necessary */
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.menu-window.active {
+    display: block; /* Show when active */
+}
+
+/* Floating Menu Window */
+.menu-window {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 60px; /* Adjust as necessary */
+    right: 30px; /* Adjust as necessary */
+    background-color: #ffffff; /* White background for contrast */
+    padding: 20px; /* Increased padding for spaciousness */
+    border-radius: 12px; /* Softer corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+    z-index: 1000;
+}
+
+/* Menu Items Style */
+.menu-window-content {
+    list-style: none; /* Remove default list style */
+    margin: 0;
+    padding: 0;
+}
+
+.menu-window-content li {
+    margin-bottom: 15px; /* Space between items */
+}
+
+/* Button and Link Styles */
+.menu-window-content button,
+.menu-window-content a {
+    display: block;
+    width: 100%; /* Full width for buttons and links */
+    padding: 12px; /* Consistent padding for comfort */
+    background-color: #3498db; /* Primary color for buttons */
+    color: white; /* Text color */
+    font-weight: bold; /* Bold text for better visibility */
+    text-align: center;
+    border: none;
+    border-radius: 8px; /* Rounded corners for a softer appearance */
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Smooth transition for hover effect */
+}
+
+/* Hover Effects */
+.menu-window-content button:hover,
+.menu-window-content a:hover {
+    background-color: #2980b9; /* Darker shade on hover */
+    transform: translateY(-2px); /* Subtle lift effect on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Slight shadow on hover for depth */
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .menu-window {
+        right: 30px; /* Adjust positioning for smaller screens */
+        width: calc(100% - 20px); /* Full-width minus padding */
+        max-width: 300px; /* Limit maximum width for better aesthetics on mobile */
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+}
