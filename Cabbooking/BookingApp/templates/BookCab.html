@@ -1,0 +1,448 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cab Booking System - Book Cab</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .navbar-custom {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .navbar-brand {
+            color: #00d4ff !important;
+            font-weight: 700;
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: #fff !important;
+            margin: 0 20px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #00d4ff !important;
+            transform: translateY(-2px);
+        }
+
+        .bookcab-container {
+            background: rgba(30, 45, 54, 0.9);
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 0.8s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(90deg, #00d4ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #00d4ff;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-submit {
+            background: #00d4ff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:hover {
+            background: #00b3d6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-submit:active::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            font-size: 1rem;
+            margin-top: 20px;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .success-message {
+            color: #00d4ff;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .fare-display {
+            color: #00d4ff;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 20px 0;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .input-group-text {
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px 0 0 10px;
+            color: #00d4ff;
+        }
+
+        #map {
+            height: 300px;
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+    </style>
+    <script>
+        function validate() {
+            var x = document.forms["f1"]["t1"].value;
+            if (x == null || x == "") {
+                window.alert("Drop-off location must be entered");
+                document.f1.dropoff.focus();
+                return false;
+            }
+            return true;
+        }
+
+        let activeInput = 'pickup'; // Track which input is active (pickup or dropoff)
+
+        function updateHiddenInput() {
+            const dropoff = document.getElementById("dropoff-location").value;
+            const hiddenInput = document.getElementById("location-hidden");
+            hiddenInput.value = dropoff;
+        }
+
+        function calculateFare(distanceKm) {
+            const baseFare = 39; // ₹100 base fare
+            const ratePerKm = 9; // ₹20 per km
+            return (baseFare + distanceKm * ratePerKm).toFixed(2);
+        }
+
+        function updateFare(pickup, dropoff) {
+            const fareDisplay = document.getElementById("fare-display");
+
+            if (!pickup || !dropoff) {
+                fareDisplay.textContent = "";
+                return;
+            }
+
+            const distanceService = new google.maps.DistanceMatrixService();
+            distanceService.getDistanceMatrix(
+                {
+                    origins: [pickup],
+                    destinations: [dropoff],
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    unitSystem: google.maps.UnitSystem.METRIC,
+                },
+                (response, status) => {
+                    if (status === "OK" && response.rows[0].elements[0].status === "OK") {
+                        const distance = response.rows[0].elements[0].distance;
+                        const distanceKm = (distance.value / 1000).toFixed(2); // Convert meters to km
+                        const fare = calculateFare(distanceKm);
+                        fareDisplay.textContent = `Estimated Fare: ₹${fare}`;
+                    } else {
+                        fareDisplay.textContent = "Unable to calculate fare. Please try again.";
+                        window.alert("Fare calculation failed: " + (response?.rows[0]?.elements[0]?.status || status));
+                    }
+                }
+            );
+        }
+
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 37.7749, lng: -122.4194 }, // Default: San Francisco
+                zoom: 12,
+            });
+
+            const pickupMarker = new google.maps.Marker({
+                map: map,
+                draggable: true,
+                icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+            });
+
+            const dropoffMarker = new google.maps.Marker({
+                map: map,
+                draggable: true,
+                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+            });
+
+            const pickupInput = document.getElementById("pickup-location");
+            const dropoffInput = document.getElementById("dropoff-location");
+
+            const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput, {
+                fields: ["formatted_address", "geometry"],
+                types: ["address"],
+            });
+
+            const dropoffAutocomplete = new google.maps.places.Autocomplete(dropoffInput, {
+                fields: ["formatted_address", "geometry"],
+                types: ["address"],
+            });
+
+            pickupAutocomplete.bindTo("bounds", map);
+            dropoffAutocomplete.bindTo("bounds", map);
+
+            // Handle pickup location selection from autocomplete
+            pickupAutocomplete.addListener("place_changed", () => {
+                const place = pickupAutocomplete.getPlace();
+                if (!place.geometry || !place.geometry.location) {
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+                map.setCenter(place.geometry.location);
+                pickupMarker.setPosition(place.geometry.location);
+                pickupInput.value = place.formatted_address;
+                updateFare(pickupInput.value, dropoffInput.value);
+            });
+
+            // Handle drop-off location selection from autocomplete
+            dropoffAutocomplete.addListener("place_changed", () => {
+                const place = dropoffAutocomplete.getPlace();
+                if (!place.geometry || !place.geometry.location) {
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+                map.setCenter(place.geometry.location);
+                dropoffMarker.setPosition(place.geometry.location);
+                dropoffInput.value = place.formatted_address;
+                updateHiddenInput();
+                updateFare(pickupInput.value, dropoffInput.value);
+            });
+
+            // Handle map click to set pickup or drop-off location
+            map.addListener("click", (event) => {
+                const location = event.latLng;
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ location: location }, (results, status) => {
+                    if (status === "OK" && results[0]) {
+                        if (activeInput === 'pickup') {
+                            pickupMarker.setPosition(location);
+                            pickupInput.value = results[0].formatted_address;
+                            map.setCenter(location);
+                        } else {
+                            dropoffMarker.setPosition(location);
+                            dropoffInput.value = results[0].formatted_address;
+                            map.setCenter(location);
+                            updateHiddenInput();
+                        }
+                        updateFare(pickupInput.value, dropoffInput.value);
+                    } else {
+                        window.alert("Geocoder failed due to: " + status);
+                    }
+                });
+            });
+
+            // Handle pickup marker drag
+            pickupMarker.addListener("dragend", () => {
+                const position = pickupMarker.getPosition();
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ location: position }, (results, status) => {
+                    if (status === "OK" && results[0]) {
+                        pickupInput.value = results[0].formatted_address;
+                        map.setCenter(position);
+                        updateFare(pickupInput.value, dropoffInput.value);
+                    } else {
+                        window.alert("Geocoder failed due to: " + status);
+                    }
+                });
+            });
+
+            // Handle drop-off marker drag
+            dropoffMarker.addListener("dragend", () => {
+                const position = dropoffMarker.getPosition();
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ location: position }, (results, status) => {
+                    if (status === "OK" && results[0]) {
+                        dropoffInput.value = results[0].formatted_address;
+                        map.setCenter(position);
+                        updateHiddenInput();
+                        updateFare(pickupInput.value, dropoffInput.value);
+                    } else {
+                        window.alert("Geocoder failed due to: " + status);
+                    }
+                });
+            });
+
+            // Update hidden input on drop-off input changes
+            dropoffInput.addEventListener('input', updateHiddenInput);
+
+            // Set active input based on focus
+            pickupInput.addEventListener('focus', () => { activeInput = 'pickup'; });
+            dropoffInput.addEventListener('focus', () => { activeInput = 'dropoff'; });
+
+            // Get user's current location for pickup
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                        };
+                        map.setCenter(pos);
+                        pickupMarker.setPosition(pos);
+                        const geocoder = new google.maps.Geocoder();
+                        geocoder.geocode({ location: pos }, (results, status) => {
+                            if (status === "OK" && results[0]) {
+                                pickupInput.value = results[0].formatted_address;
+                                updateFare(pickupInput.value, dropoffInput.value);
+                            }
+                        });
+                    },
+                    () => {
+                        console.log("Geolocation service failed.");
+                    }
+                );
+            }
+        }
+    </script>
+</head>
+<body>
+    {% if booking_completed %}
+        <div class="success-message">Booking Request Successfully Submitted with Booking Id = {{ book_id }}</div>
+    {% else %}
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'index' %}">Cabzii</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'BookCab' %}">Book Cab</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'CancelRide' %}">Cancel Ride</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ViewPastRides' %}">View History Rides</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'MakePayment' %}">Make Payment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="bookcab-container">
+            <h3>Book Cab Screen</h3>
+            <form name="f1" method="post" action="{% url 'BookCabAction' %}" onsubmit="return validate()">
+                {% csrf_token %}
+                {% if data %}
+                    <div class="error-message">{{ data }}</div>
+                {% endif %}
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                        <input type="text" class="form-control" id="pickup-location" placeholder="Enter or select pickup location" required aria-label="Pickup Location">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                        <input type="text" class="form-control" id="dropoff-location" name="dropoff" placeholder="Enter or select drop-off location" required aria-label="Drop-off Location">
+                    </div>
+                </div>
+                <input type="hidden" id="location-hidden" name="t1">
+                <div id="map"></div>
+                <div id="fare-display" class="fare-display"></div>
+                <button type="submit" class="btn btn-submit">Submit</button>
+            </form>
+        </div>
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlAK4eRLfMOsKHhGe5x_scSnLrCdBkCSY&libraries=places&callback=initMap" async defer></script>
+</body>
+</html>
