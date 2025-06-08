@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cab Booking System - User Dashboard</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .navbar-custom {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .navbar-brand {
+            color: #00d4ff !important;
+            font-weight: 700;
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: #fff !important;
+            margin: 0 20px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #00d4ff !important;
+            transform: translateY(-2px);
+        }
+
+        .dashboard-container {
+            margin-top: 120px;
+            padding: 40px 20px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #00d4ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .option-card {
+            background: rgba(30, 45, 54, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .option-card a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .option-card:hover a {
+            color: #00d4ff;
+        }
+
+        .option-icon {
+            font-size: 3rem;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .option-card:hover .option-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .data-container {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">Cabziii</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'BookCab' %}">Book Cab</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'CancelRide' %}">Cancel Ride</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ViewPastRides' %}">View History Rides</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'MakePayment' %}">Make Payment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container dashboard-container">
+        <div class="hero-text">
+            <h1>User Dashboard</h1>
+        </div>
+        <div class="options-grid">
+            <div class="option-card">
+                <i class="fas fa-taxi option-icon"></i>
+                <a href="{% url 'BookCab' %}">Book Cab</a>
+            </div>
+            <div class="option-card">
+                <i class="fas fa-times option-icon"></i>
+                <a href="{% url 'CancelRide' %}">Cancel Ride</a>
+            </div>
+            <div class="option-card">
+                <i class="fas fa-history option-icon"></i>
+                <a href="{% url 'ViewPastRides' %}">View History Rides</a>
+            </div>
+            <div class="option-card">
+                <i class="fas fa-credit-card option-icon"></i>
+                <a href="{% url 'MakePayment' %}">Make Payment</a>
+            </div>
+            <div class="option-card">
+                <i class="fas fa-sign-out-alt option-icon"></i>
+                <a href="{% url 'index' %}">Logout</a>
+            </div>
+        </div>
+        <div class="data-container text-center">{{ data|safe }}</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
